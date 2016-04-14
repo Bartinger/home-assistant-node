@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Bartinger/milky-pi/issues"
   },
-  "homepage": "https://github.com/Bartinger/milky-pi#readme"
+  "homepage": "https://github.com/Bartinger/milky-pi#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
