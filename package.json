@@ -1,0 +1,19 @@
+{
+  "name": "milky-pi",
+  "version": "1.0.0",
+  "description": "Node server to control lights via pilight",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bartinger/milky-pi.git"
+  },
+  "author": "Dominic Bartl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bartinger/milky-pi/issues"
+  },
+  "homepage": "https://github.com/Bartinger/milky-pi#readme"
+}
