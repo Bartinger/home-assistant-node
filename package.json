@@ -1,5 +1,5 @@
 {
-  "name": "milky-pi",
+  "name": "home-assistant",
   "version": "1.0.0",
   "description": "Node server to control lights via pilight",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bartinger/milky-pi.git"
+    "url": "git+https://github.com/Bartinger/home-assistant-node.git"
   },
   "author": "Dominic Bartl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Bartinger/milky-pi/issues"
+    "url": "https://github.com/Bartinger/home-assistant-node/issues"
   },
-  "homepage": "https://github.com/Bartinger/milky-pi#readme",
+  "homepage": "https://github.com/Bartinger/home-assistant-node#readme",
   "dependencies": {
     "express": "^4.13.4"
   }
