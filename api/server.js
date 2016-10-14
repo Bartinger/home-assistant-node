@@ -1,18 +1,17 @@
 let BaseServer = require('./core/server');
 let socketIo = require('socket.io');
 var SocketService = require('./serivce/socket-service');
+var routes = require('./routes');
 
 class Server extends BaseServer {
 
-	onStart(app) {
-		this.io = socketIo(app, {});
+	onStart(server) {
+		this.io = socketIo(server, {});
 		this.socketService = new SocketService(this.io);
 	}
 
 	onConfig(app) {
-		app.get('/', (req, res) => {
-			res.send('works');
-		});
+		routes.init(app);
 	}
 
 }
