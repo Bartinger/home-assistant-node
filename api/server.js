@@ -5,13 +5,13 @@ var routes = require('./routes');
 
 class Server extends BaseServer {
 
+	onConfig(app) {
+		routes.init(app);
+	}
+
 	onStart(server) {
 		this.io = socketIo(server, {});
 		this.socketService = new SocketService(this.io);
-	}
-
-	onConfig(app) {
-		routes.init(app);
 	}
 
 }
