@@ -1,0 +1,60 @@
+{
+  "devices": {
+    "anteroom": {
+      "protocol": [ "intertechno_old" ],
+      "id": [{
+        "id": 12,
+        "unit": 10
+      }],
+      "state": "off"
+    },
+    "kitchen": {
+      "protocol": [ "intertechno_old" ],
+      "id": [{
+        "id": 13,
+        "unit": 10
+      }],
+      "state": "off"
+    },
+    "bedroom": {
+      "protocol": [ "intertechno_old" ],
+      "id": [{
+        "id": 14,
+        "unit": 10
+      }],
+      "state": "off"
+    },
+    "bath": {
+      "protocol": [ "intertechno_old" ],
+      "id": [{
+        "id": 15,
+        "unit": 10
+      }],
+      "state": "on"
+    }
+  },
+  "rules": {},
+  "gui": {},
+  "settings": {
+    "log-level": 6,
+    "pid-file": "/var/run/pilight.pid",
+    "log-file": "/var/log/pilight.log",
+    "webserver-enable": 0,
+    "webserver-root": "/usr/local/share/pilight/",
+    "webserver-http-port": 5001,
+    "webserver-cache": 1
+  },
+  "hardware": {
+    "433gpio": {
+      "sender": 0,
+      "receiver": 1
+    }
+  },
+  "registry": {
+    "pilight": {
+      "version": {
+        "current": "7.0"
+      }
+    }
+  }
+}

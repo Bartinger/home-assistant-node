@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+OLD_DIR="$(pwd)"
+
+PILIGHT_CONFIG=/etc/pilight/config.json
+
+cd $DIR
+# Create backup of config
+sudo cp $PILIGHT_CONFIG "$PILIGHT_CONFIG.backup-$(date +"%Y%m%d_%H%M%S")"
+sudo rm $PILIGHT_CONFIG
+sudo ln -s $DIR/config/pilight.json $PILIGHT_CONFIG
+cd $OLD_DIR
