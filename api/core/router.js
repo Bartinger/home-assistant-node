@@ -1,4 +1,5 @@
 let _ = require('lodash');
+let Promise = require('bluebird');
 
 class Router {
 
@@ -6,25 +7,40 @@ class Router {
 		this.routes = {};
 	}
 
-	get(path, name, ...functions) {
-		return this.addRoute('get', path, name, functions);
+	get(path, name, callback) {
+		return this.addRoute('get', path, name, callback);
 	}
 
-	post(path, name, ...functions) {
-		return this.addRoute('post', path, name, functions);
+	post(path, name, callback) {
+		return this.addRoute('post', path, name, callback);
 	}
 
-	addRoute(method, path, name, ...functions) {
+	addRoute(method, path, name, callback) {
 		this.routes[name] = {
 			method: method,
 			path: path,
-			functions: functions
+			callback: callback
 		}
 	}
 
 	init(app) {
 		_.forOwn(this.routes, (route) => {
-			app[route.method].call(app, route.path, route.functions);
+			app[route.method].call(app, route.path, (req, res, next) => {
+
+				try {
+					var result = route.callback(req, res, next);
+					Promise.resolve(result)
+						.catch(function(err) {
+							console.error(err);
+							res.status(500).send(err)
+						})
+				} catch (err) {
+					res.status(500).send(err);
+				}
+
+
+
+			});
 		});
 	}
 

@@ -13,9 +13,9 @@ class BaseRepository {
 			});
 	}
 
-	list(attributes) {
+	list(attributes, order) {
 		return this.modelClass.collection()
-			.query({ where: attributes })
+			.query(this.createQuery(attributes, order))
 			.fetch({ withRelated: this.modelClass.load })
 			.then(function (models) {
 				if (!models) {
@@ -43,6 +43,14 @@ class BaseRepository {
 	remove(attributes) {
 		return this.modelClass.forge(attributes)
 			.destroy();
+	}
+
+	createQuery(attributes, order) {
+		var filter = attributes? {where: attributes} : {};
+		if (order) {
+			filter.orderBy = [order.column, order.direction];
+		}
+		return filter;
 	}
 
 }
