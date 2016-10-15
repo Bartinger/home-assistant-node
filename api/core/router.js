@@ -15,6 +15,10 @@ class Router {
 		return this.addRoute('post', path, name, callback);
 	}
 
+	patch(path, name, callback) {
+		return this.addRoute('patch', path, name, callback);
+	}
+
 	addRoute(method, path, name, callback) {
 		this.routes[name] = {
 			method: method,

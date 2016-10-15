@@ -1,6 +1,6 @@
 let BaseServer = require('./core/server');
 let socketIo = require('socket.io');
-var SocketService = require('./serivce/socket-service');
+var SocketService = require('./services/socket-service');
 var routes = require('./routes');
 
 class Server extends BaseServer {
