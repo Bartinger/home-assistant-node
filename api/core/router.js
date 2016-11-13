@@ -1,5 +1,6 @@
 let _ = require('lodash');
 let Promise = require('bluebird');
+let WebError = require('./error');
 
 class Router {
 
@@ -19,6 +20,10 @@ class Router {
 		return this.addRoute('patch', path, name, callback);
 	}
 
+	delete(path, name, callback) {
+		return this.addRoute('delete', path, name, callback);
+	}
+
 	addRoute(method, path, name, callback) {
 		this.routes[name] = {
 			method: method,
@@ -34,20 +39,30 @@ class Router {
 				try {
 					var result = route.callback(req, res, next);
 					Promise.resolve(result)
-						.catch(function(err) {
-							console.error(err);
-							res.status(500).send(err)
+						.catch(WebError, (err) => {
+							res.status(err.code);
+							res.render('error', {
+								data: err
+							});
+						})
+						.catch((err) => {
+							handle500(err, res);
 						})
 				} catch (err) {
-					res.status(500).send(err);
+					handle500(err, res)
 				}
-
-
-
 			});
 		});
 	}
+}
 
+function handle500(err, res) {
+	console.error(err.stack);
+	let webErr = WebError.serverError();
+	res.status(webErr.code);
+	res.render('error', {
+		data: webErr
+	});
 }
 
 module.exports = Router;

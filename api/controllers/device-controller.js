@@ -7,15 +7,22 @@ class DeviceController extends BaseController {
 	list(req, res) {
 		return repo.list()
 			.then((devices) => {
-				res.send(devices);
+				res.render('device', {data:devices});
 			})
 	}
 
 	create(req, res) {
 		return repo.save(req.body)
 			.then((data) => {
-				res.send(data);
+				res.render('device', {data:data});
 			})
+	}
+
+	delete(req, res) {
+		return repo.remove({id: req.params.id})
+			.then(() => {
+				res.sendStatus(201);
+			});
 	}
 
 	control(req, res) {
