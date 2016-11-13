@@ -1,6 +1,6 @@
 let repo = require('../repositories/device-repository');
 let BaseController = require('../core/base-controller');
-let pilightService = require('./pilight-service');
+let pilightService = require('../services/pilight-service');
 
 class DeviceController extends BaseController {
 

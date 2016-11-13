@@ -1,11 +1,16 @@
 let BaseServer = require('./core/server');
 let socketIo = require('socket.io');
-var SocketService = require('./services/socket-service');
-var routes = require('./routes');
+let SocketService = require('./services/socket-service');
+let routes = require('./routes');
+let viewEngine = require('express-json-views');
 
 class Server extends BaseServer {
 
 	onConfig(app) {
+		app.engine('json', viewEngine());
+		app.set('views', __dirname + '/views');
+		app.set('view engine', 'json');
+
 		routes.init(app);
 	}
 

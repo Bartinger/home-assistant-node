@@ -26,6 +26,7 @@
     "compression": "^1.6.2",
     "crypto": "0.0.3",
     "express": "^4.13.4",
+    "express-json-views": "^0.1.0",
     "knex": "^0.12.5",
     "lodash": "^4.16.4",
     "mysql": "^2.11.1",
