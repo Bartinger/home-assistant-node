@@ -1,8 +1,8 @@
 let _ = require('lodash');
 let Utils = require('../core/utils');
 let fakeDevice = {
-	id: 'A0',
-	unit: '36',
+	device_id: 'A0',
+	device_unit: '36',
 	state: 'on',
 	origin: 'receiver',
 	protocol: 'clarus_switch',
@@ -20,10 +20,11 @@ class SocketService {
 	onConnect(socket) {
 		console.log('Socket connected');
 		let interval = setInterval(() => {
-			socket.emit('device', _.defaults({
+			let dev = _.defaults({
 				uuid: Utils.generateRandomKey('fake')
-			}, fakeDevice));
-		}, 5 * 1000);
+			}, fakeDevice);
+			socket.emit('device', dev);
+		}, 3 * 1000);
 
 		socket.on('disconnect', () => {
 			console.log('Socket disconnected');

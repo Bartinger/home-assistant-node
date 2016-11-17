@@ -3,6 +3,8 @@ let socketIo = require('socket.io');
 let SocketService = require('./services/socket-service');
 let routes = require('./routes');
 let viewEngine = require('express-json-views');
+let fs = require('fs');
+let path = require('path');
 
 class Server extends BaseServer {
 
@@ -11,7 +13,15 @@ class Server extends BaseServer {
 		app.set('views', __dirname + '/views');
 		app.set('view engine', 'json');
 
-		routes.init(app);
+		let controllersDir = path.join(__dirname, '/controllers');
+		let files = fs.readdirSync(controllersDir);
+		let controllers = {};
+		for (let i = 0; i < files.length; i++) {
+			let file = path.join(controllersDir, files[i]);
+			let controller = require(file);
+			controllers[controller.constructor.name] = controller;
+		}
+		routes.init(app, controllers);
 	}
 
 	onStart(server) {

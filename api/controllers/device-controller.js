@@ -12,10 +12,20 @@ class DeviceController extends BaseController {
 	}
 
 	create(req, res) {
-		return repo.save(req.body)
+		return this.validate({
+			name: 'required',
+			device_id: 'required',
+			device_unit: 'required',
+			origin: 'required',
+			protocol: 'required',
+			uuid: 'required'
+		}, req)
 			.then((data) => {
-				res.render('device', {data:data});
+				return repo.save(data)
 			})
+			.then((data) => {
+				res.render('device', {data: data});
+			});
 	}
 
 	delete(req, res) {

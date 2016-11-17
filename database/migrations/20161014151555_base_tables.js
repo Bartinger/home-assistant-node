@@ -6,8 +6,10 @@ exports.up = function(knex, Promise) {
 			table.increments().primary();
 			table.string('name');
 			table.string('device_id');
-			table.string('unit');
+			table.string('device_unit');
+			table.string('origin');
 			table.string('protocol');
+			table.string('uuid');
 			table.timestamps();
 		})
 	]);
